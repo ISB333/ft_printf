@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by isb3              #+#    #+#             */
-/*   Updated: 2023/11/30 15:59:42 by adesille         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:09:08 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@ int ft_printf(const char *format, ...)
 				c = va_arg(args, int);
 				ft_putchar(c);
 			}
+			if (*format == 'i')
+			{
+
+			}
         }
 		else
 			write(1, format, 1);
-        format++;  // Move to the next character in the format string
+        format++;
     }
     va_end(args);
-    return 0;  // Return whatever is appropriate for your function
+    return 0;
 }
 
 int main() 
