@@ -6,7 +6,7 @@
 /*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/01 18:01:14 by isb3             ###   ########.fr       */
+/*   Updated: 2023/12/01 18:05:48 by isb3             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	format_identifier(va_list args, const char format)
 
 	printed_len = 0;
 	if (format == 's')
-		ft_putstr(va_arg(args, char *));
+		return(printed_len += ft_putstr(va_arg(args, char *)), printed_len);
 	else if (format == 'c')
-		ft_putchar(va_arg(args, int));
+		return(printed_len += ft_putchar(va_arg(args, int)), printed_len);
 	// if (format[i] == 'i')
-	return (printed_len);
+	return (0);
 }
 
 int ft_printf(const char *format, ...) 
