@@ -3,45 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by isb3              #+#    #+#             */
-/*   Updated: 2023/11/30 18:09:08 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:50:27 by isb3             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/// TODO 1 /// Check if I need to put functions in static
+/// TODO 2 /// Read carefully rules (for once lol)
+
 int ft_printf(const char *format, ...) 
 {
-	char		*str;
-	char		c;
+	int 		i = 0;
     va_list		args;
     va_start(args, format);
 
-    while (*format)
+    while (format[i])
 	{
-        if (*format == '%')
+        if (format[i] == '%')
 		{
-            format++;
-			if (*format == 's')
-			{
-				str = va_arg(args, char *);
-				ft_putstr(str);
-			}
-			if (*format == 'c')
-			{
-				c = va_arg(args, int);
-				ft_putchar(c);
-			}
-			if (*format == 'i')
-			{
-
-			}
+            i++;
+			if (format[i] == 's')
+				ft_putstr(va_arg(args, char *));
+			if (format[i] == 'c')
+				ft_putchar(va_arg(args, int));
+			// if (format[i] == 'i')
         }
 		else
-			write(1, format, 1);
-        format++;
+			write(1, &format[i], 1);
+        i++;
     }
     va_end(args);
     return 0;
