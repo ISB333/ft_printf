@@ -6,7 +6,7 @@
 /*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/01 16:50:27 by isb3             ###   ########.fr       */
+/*   Updated: 2023/12/01 18:01:14 by isb3             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,39 @@
 
 /// TODO 1 /// Check if I need to put functions in static
 /// TODO 2 /// Read carefully rules (for once lol)
+/// TODO 3 /// Return the size
+/// TODO 4 /// ??? Protect the write function ???
+
+int	format_identifier(va_list args, const char format)
+{	
+	int printed_len;
+
+	printed_len = 0;
+	if (format == 's')
+		ft_putstr(va_arg(args, char *));
+	else if (format == 'c')
+		ft_putchar(va_arg(args, int));
+	// if (format[i] == 'i')
+	return (printed_len);
+}
 
 int ft_printf(const char *format, ...) 
 {
 	int 		i = 0;
     va_list		args;
-    va_start(args, format);
+	int full_printed_len;
 
+    va_start(args, format);
     while (format[i])
 	{
         if (format[i] == '%')
 		{
-            i++;
-			if (format[i] == 's')
-				ft_putstr(va_arg(args, char *));
-			if (format[i] == 'c')
-				ft_putchar(va_arg(args, int));
-			// if (format[i] == 'i')
-        }
+			full_printed_len += format_identifier(args, format[i + 1]);
+			i++;
+		}
 		else
 			write(1, &format[i], 1);
-        i++;
+		i++;
     }
     va_end(args);
     return 0;
