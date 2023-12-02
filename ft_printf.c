@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/01 18:05:48 by isb3             ###   ########.fr       */
+/*   Updated: 2023/12/02 16:02:57 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ int	format_identifier(va_list args, const char format)
 		return(printed_len += ft_putstr(va_arg(args, char *)), printed_len);
 	else if (format == 'c')
 		return(printed_len += ft_putchar(va_arg(args, int)), printed_len);
-	// if (format[i] == 'i')
+	else if (format == 'd' || format == 'i')
+		return(printed_len += ft_itoa(va_arg(args, int)), printed_len);
+	else if (format == 'u')
+		return(printed_len += ft_itoa_unsigned(va_arg(args, unsigned int)), printed_len);
+	else if (format == 'x' || format == 'X')
+		return(printed_len += ft_put_hexa(va_arg(args, int), format), printed_len);
 	return (0);
 }
 
@@ -34,7 +39,7 @@ int ft_printf(const char *format, ...)
 {
 	int 		i = 0;
     va_list		args;
-	int full_printed_len;
+	int full_printed_len = 0;
 
     va_start(args, format);
     while (format[i])
@@ -45,20 +50,33 @@ int ft_printf(const char *format, ...)
 			i++;
 		}
 		else
+		{
 			write(1, &format[i], 1);
+			full_printed_len++;
+		}
 		i++;
     }
+	printf("%d\n\n", full_printed_len);
     va_end(args);
     return 0;
 }
 
 int main() 
 {
+	int lol = 42;
+	int *ptr = &lol;
     ft_printf("/////////////////////////////////////\n");
     ft_printf("///// SUPERTEST GIGAMEGAPRO3000 /////\n");
     ft_printf("/////////////////////////////////////\n\n");
     ft_printf("          %s%s\n", "Hello"," World!");
     ft_printf("             %c%c %c%c\n", 'E', 'Z', 'P', 'Z');
+    ft_printf("             %d\n        %s\n", 123, "Viva l'algerie");
+    ft_printf("          %u\n", 4294967295);
+    ft_printf("          %x\n", 2147483647);
+    ft_printf("          %x\n", 255);
+    ft_printf("          %X\n", 2147483647);
+    ft_printf("          %X\n", 255);
+	printf("           %lu\n", (uintptr_t)ptr);
     return 0;
 }
 

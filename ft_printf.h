@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:42:44 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/01 18:05:21 by isb3             ###   ########.fr       */
+/*   Updated: 2023/12/02 16:03:30 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 int     ft_printf(const char *, ...);
 int	ft_putstr(char *str);
 int	ft_putchar(char c);
-void	ft_itoa(int n);
+int	ft_itoa(int n);
+int	ft_itoa_unsigned(unsigned int n);
+int ft_put_hexa(int n, const char format);
 
 #endif
