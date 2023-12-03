@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/02 16:02:57 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/03 13:37:23 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,26 @@ int	format_identifier(va_list args, const char format)
 		return(printed_len += ft_itoa_unsigned(va_arg(args, unsigned int)), printed_len);
 	else if (format == 'x' || format == 'X')
 		return(printed_len += ft_put_hexa(va_arg(args, int), format), printed_len);
+	else if (format == 'p')
+		return(printed_len += ft_ptr(va_arg(args, void *)), printed_len);
+	else if (format == '%')
+		return(write(1, "%", 1), 1);
 	return (0);
 }
 
 int ft_printf(const char *format, ...) 
 {
 	int 		i = 0;
-    va_list		args;
+	va_list		args;
 	int full_printed_len = 0;
 
-    va_start(args, format);
-    while (format[i])
+	va_start(args, format);
+	while (format[i])
 	{
-        if (format[i] == '%')
+		if (format[i] == '%')
 		{
+			if (!format[i + 1])
+				return(0);
 			full_printed_len += format_identifier(args, format[i + 1]);
 			i++;
 		}
@@ -55,20 +61,20 @@ int ft_printf(const char *format, ...)
 			full_printed_len++;
 		}
 		i++;
-    }
-	printf("%d\n\n", full_printed_len);
-    va_end(args);
-    return 0;
+	}
+	// printf("%d\n\n", full_printed_len);
+	va_end(args);
+	return (full_printed_len);
 }
 
 int main() 
 {
-	int lol = 42;
-	int *ptr = &lol;
     ft_printf("/////////////////////////////////////\n");
     ft_printf("///// SUPERTEST GIGAMEGAPRO3000 /////\n");
     ft_printf("/////////////////////////////////////\n\n");
     ft_printf("          %s%s\n", "Hello"," World!");
+	// ft_printf(" NULL %s NULL\n", NULL);
+	// printf(" NULL %s NULL\n", NULL);
     ft_printf("             %c%c %c%c\n", 'E', 'Z', 'P', 'Z');
     ft_printf("             %d\n        %s\n", 123, "Viva l'algerie");
     ft_printf("          %u\n", 4294967295);
@@ -76,7 +82,25 @@ int main()
     ft_printf("          %x\n", 255);
     ft_printf("          %X\n", 2147483647);
     ft_printf("          %X\n", 255);
-	printf("           %lu\n", (uintptr_t)ptr);
+    ft_printf("          %%\n");
+	ft_printf(" %p \n", (void *)-1);
+	printf(" %p \n", (void *)-1);
+	ft_printf(" %p \n", (void *)1);
+	printf(" %p \n", (void *)1);
+	ft_printf(" %p \n", (void *)15);
+	printf(" %p \n", (void *)15);
+	ft_printf(" %p \n", (void *)16);
+	printf(" %p \n", (void *)16);
+	ft_printf(" %p \n", (void *)17);
+	printf(" %p \n", (void *)17);
+	ft_printf(" %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
+	printf(" %p %p \n", (void *)LONG_MIN, (void *)LONG_MAX);
+	ft_printf(" %p %p \n", (void *)INT_MIN, (void *)INT_MAX);
+	printf(" %p %p \n", (void *)INT_MIN, (void *)INT_MAX);
+	ft_printf(" %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
+	printf(" %p %p \n", (void *)ULONG_MAX, (void *)-ULONG_MAX);
+	ft_printf(" %p %p \n", (void *)0, (void *)0);
+	printf(" %p %p \n", (void *)0, (void *)0);
     return 0;
 }
 

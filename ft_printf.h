@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:42:44 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/02 16:03:30 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/03 13:31:22 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <limits.h>
 
 int     ft_printf(const char *, ...);
-int	ft_putstr(char *str);
-int	ft_putchar(char c);
-int	ft_itoa(int n);
-int	ft_itoa_unsigned(unsigned int n);
-int ft_put_hexa(int n, const char format);
+int		ft_putstr(char *str);
+int		ft_putchar(char c);
+int		ft_itoa(int n);
+int		ft_itoa_unsigned(unsigned int n);
+int		ft_put_hexa(int n, const char format);
+int		ft_ptr(const void *ptr);
 
 #endif

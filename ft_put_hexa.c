@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_hex.c                                       :+:      :+:    :+:   */
+/*   ft_put_hexa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:11:47 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/02 15:50:27 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/03 13:01:03 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 
 int ft_put_hexa(int n, const char format) 
 {
-    char *hex_digits; 
-    char hex_result[20];
-    int index = 0;
-    int i;
+	char *hex_digits; 
+	char hex_result[20];
+	int index = 0;
+	int i;
 
-    if (format == 'x')
-        hex_digits = "0123456789abcdef";
-    else if (format == 'X')
-        hex_digits = "0123456789ABCDEF";
-    if (n == 0)
-        return(write(1, "0", 1), 1);
-    while (n > 0)
-    {
-        int remainder = n % 16;
-        hex_result[index] = hex_digits[remainder];
-        n /= 16;
-        index++;
-    }
-    i = index - 1;
-    while(i >= 0)
-        write(1, &hex_result[i--], 1);
-    return(index);
+	if (format == 'x')
+		hex_digits = "0123456789abcdef";
+	else if (format == 'X')
+		hex_digits = "0123456789ABCDEF";
+	if (n == 0)
+		return(write(1, "0", 1), 1);
+	while (n > 0)
+	{
+		int remainder = n % 16;
+		hex_result[index] = hex_digits[remainder];
+		n /= 16;
+		index++;
+	}
+	i = index - 1;
+	while(i >= 0)
+		write(1, &hex_result[i--], 1);
+	return(index);
 }
 
 // int main() {
