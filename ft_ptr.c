@@ -6,7 +6,7 @@
 /*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:42:45 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/04 13:11:50 by isb3             ###   ########.fr       */
+/*   Updated: 2023/12/04 14:18:05 by isb3             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int ft_ptr(unsigned long long ptr)
 	write(1, "0x", 2);
 	while(i >= 0)
 		write(1, &hex_result[i--], 1);
-	return index;
+	return (index + 2);
 }
 
 // int main() 
