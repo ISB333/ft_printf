@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isb3 <isb3@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:42:45 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/03 13:26:08 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:11:50 by isb3             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_ptr(const void *ptr)
+int ft_ptr(unsigned long long ptr)
 {
 	char *hex_digits;
 	char hex_result[20];
