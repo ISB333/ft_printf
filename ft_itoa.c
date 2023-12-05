@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 15:26:04 by isb3              #+#    #+#             */
-/*   Updated: 2023/12/04 19:50:22 by adesille         ###   ########.fr       */
+/*   Created: 2023/12/01 15:26:04 by adesille          #+#    #+#             */
+/*   Updated: 2023/12/05 12:07:21 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ char	*ft_putnbr(int n, int digit_nbr)
 	}
 	while (digit_nbr > 0)
 	{
-		str_nbr[--digit_nbr] = n % 10 + '0'; 
+		str_nbr[--digit_nbr] = n % 10 + '0';
 		n /= 10;
 	}
-	if (token == 1) 
+	if (token == 1)
 		str_nbr[0] = '-';
 	str_nbr[len] = '\0';
 	return (str_nbr);
@@ -39,8 +39,8 @@ char	*ft_putnbr(int n, int digit_nbr)
 
 int	digit_counter(int n)
 {
-	int count;
-	int temp_n;
+	int	count;
+	int	temp_n;
 
 	temp_n = n;
 	count = 0;
@@ -49,7 +49,7 @@ int	digit_counter(int n)
 		temp_n *= -1;
 		count ++;
 	}
-	while(temp_n > 0)
+	while (temp_n > 0)
 	{
 		temp_n /= 10;
 		count++;
@@ -59,19 +59,19 @@ int	digit_counter(int n)
 
 int	ft_itoa(int n)
 {
-	int digit_nbr;
-	char *result;
-	int i;
+	char	*result;
+	int		digit_nbr;
+	int		i;
 
 	i = 0;
 	if (n == 0)
-		return(write(1, "0", 1), 1);
+		return (write(1, "0", 1), 1);
 	if (n == -2147483648)
-		return(write(1, "-2147483648", 11), 11);
+		return (write(1, "-2147483648", 11), 11);
 	digit_nbr = digit_counter(n);
 	result = ft_putnbr(n, digit_nbr);
-	while(result[i])
+	while (result[i])
 		write(1, &result[i++], 1);
 	free(result);
-	return(digit_nbr);
+	return (digit_nbr);
 }

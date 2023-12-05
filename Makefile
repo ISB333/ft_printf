@@ -8,7 +8,7 @@ CC = cc
 
 SRCS = ft_printf.c ft_ptr.c \
 	   ft_put_chars.c ft_put_hexa.c \
-	   ft_itoa.c ft_itoa_unsigned.c
+	   ft_itoa.c ft_itoa_unsigned.c main.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -26,8 +26,11 @@ clean:
 	rm -f ${OBJS}
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f ${OBJS} ${NAME}
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: ${NAME} main.o
+		${CC} ${CFLAGS} main.o -o SuperTestGigaMegaPro3000 -L. -lftprintf
+
+.PHONY: all clean fclean re test
