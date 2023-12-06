@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/05 12:43:11 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:12:33 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (!format[i + 1])
-				return (0);
+				return (-1);
 			full_printed_len += format_identifier(args, format[i + 1]);
 			i++;
 		}

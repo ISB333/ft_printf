@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:42:45 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/06 15:54:56 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:11:45 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	ft_ptr(unsigned long long ptr)
 		n /= 16;
 		i++;
 	}
-	write(1, "0x", 2);
+	if (!write(1, "0x", 2))
+		return (-1);
 	i_hexa = i;
 	while (i - 1 >= 0)
 		ft_putchar(result[--i]);
