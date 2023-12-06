@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:42:45 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/05 12:42:36 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:54:56 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_ptr(unsigned long long ptr)
 	i = 0;
 	n = (uintptr_t)ptr;
 	if (!n)
-		return (write(1, "(nil)", 5), 5);
+		return (ft_putstr("0x0"), 3);
 	hexa_base = "0123456789abcdef";
 	while (n > 0)
 	{
@@ -35,6 +35,6 @@ int	ft_ptr(unsigned long long ptr)
 	write(1, "0x", 2);
 	i_hexa = i;
 	while (i - 1 >= 0)
-		write(1, &result[--i], 1);
+		ft_putchar(result[--i]);
 	return (i_hexa + 2);
 }

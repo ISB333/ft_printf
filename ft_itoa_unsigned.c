@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:26:04 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/05 12:06:51 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:56:29 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_putnbr_unsigned(unsigned int n, int len)
 
 int	unsigned_digit_counter(unsigned int n)
 {
-	int				count;
+	int	count;
 
 	count = 0;
 	while (n > 0)
@@ -48,12 +48,12 @@ int	ft_itoa_unsigned(unsigned int n)
 
 	i = 0;
 	if (n == 0)
-		return (write(1, "0", 1), 1);
+		return (ft_putchar('0'), 1);
 	result = ft_putnbr_unsigned(n, unsigned_digit_counter(n));
 	if (!result)
 		return (0);
 	while (result[i])
-		write(1, &result[i++], 1);
+		ft_putchar(result[i++]);
 	free(result);
 	return (i);
 }

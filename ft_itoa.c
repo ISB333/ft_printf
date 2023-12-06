@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:26:04 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/05 12:07:21 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:54:16 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ int	ft_itoa(int n)
 
 	i = 0;
 	if (n == 0)
-		return (write(1, "0", 1), 1);
+		return (ft_putchar('0'), 1);
 	if (n == -2147483648)
-		return (write(1, "-2147483648", 11), 11);
+		return (ft_putstr("-2147483648"), 11);
 	digit_nbr = digit_counter(n);
 	result = ft_putnbr(n, digit_nbr);
 	while (result[i])
-		write(1, &result[i++], 1);
+		ft_putchar(result[i++]);
 	free(result);
 	return (digit_nbr);
 }
