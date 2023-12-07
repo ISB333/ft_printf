@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:26:04 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/06 17:10:22 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:06:03 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ int	ft_itoa_unsigned(unsigned int n)
 
 	i = 0;
 	if (n == 0)
-		return (ft_putchar('0'), 1);
+		return (ft_putchar('0'));
 	result = ft_putnbr_unsigned(n, unsigned_digit_counter(n));
 	if (!result)
 		return (0);
 	while (result[i])
-		ft_putchar(result[i++]);
+	{
+		if (write(1, &result[i++], 1) == -1)
+			return (-1);
+	}
 	free(result);
 	return (i);
 }

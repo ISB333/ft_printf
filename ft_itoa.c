@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:26:04 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/06 15:54:16 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:10:51 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_putnbr(int n, int digit_nbr)
 	token = 0;
 	len = digit_nbr;
 	str_nbr = malloc(digit_nbr + 1);
+	if (!str_nbr)
+		return (NULL);
 	if (n < 0)
 	{
 		n *= -1;
@@ -65,13 +67,13 @@ int	ft_itoa(int n)
 
 	i = 0;
 	if (n == 0)
-		return (ft_putchar('0'), 1);
+		return (ft_putchar('0'));
 	if (n == -2147483648)
 		return (ft_putstr("-2147483648"), 11);
 	digit_nbr = digit_counter(n);
 	result = ft_putnbr(n, digit_nbr);
-	while (result[i])
-		ft_putchar(result[i++]);
+	if (ft_putstr(result) == -1)
+		return (-1);
 	free(result);
 	return (digit_nbr);
 }

@@ -6,36 +6,66 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:42:45 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/06 17:11:45 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:59:15 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_ptr(unsigned long long ptr)
+int	ft_put_ptrhexa(unsigned long long n, char *hex_result)
 {
-	uintptr_t	n;
-	char		*hexa_base;
-	char		result[20];
-	int			i_hexa;
-	int			i;
+	char	*hex_digits;
+	int		i_hexa;
+	int		i;
 
 	i = 0;
-	n = (uintptr_t)ptr;
-	if (!n)
-		return (ft_putstr("0x0"), 3);
-	hexa_base = "0123456789abcdef";
+	hex_digits = "0123456789abcdef";
 	while (n > 0)
 	{
 		i_hexa = n % 16;
-		result[i] = hexa_base[i_hexa];
+		hex_result[i] = hex_digits[i_hexa];
 		n /= 16;
 		i++;
 	}
-	if (!write(1, "0x", 2))
-		return (-1);
 	i_hexa = i;
 	while (i - 1 >= 0)
-		ft_putchar(result[--i]);
-	return (i_hexa + 2);
+	{
+		if (write(1, &hex_result[--i], 1) == -1)
+		{
+			free(hex_result);
+			return (-1);
+		}
+	}
+	free(hex_result);
+	return (i_hexa);
+}
+
+int	ptr_digit_counter(unsigned long long n)
+{
+	int	count;
+
+	count = 0;
+	while (n > 0)
+	{
+		n /= 16;
+		count++;
+	}
+	return (count);
+}
+
+int	ft_ptr(unsigned long long n)
+{
+	int		size;
+	char	*hex_result;
+
+	if (n == 0)
+		return (write(1, "0", 1));
+	size = ptr_digit_counter(n);
+	hex_result = malloc(size + 1);
+	if (!hex_result)
+		return (-1);
+	hex_result[size] = '\0';
+	if (write(1, "0x", 2) == -1)
+		return (-1);
+	return (ft_put_ptrhexa(n, hex_result) + 2);
 }

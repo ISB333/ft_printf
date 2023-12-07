@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/06 17:12:33 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:21:52 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	format_identifier(va_list args, const char format)
 	int	len;
 
 	len = 0;
+	if (!format)
+		return (-1);
 	if (format == 's')
 		return (len += ft_putstr(va_arg(args, char *)), len);
 	else if (format == 'c')
@@ -34,29 +36,28 @@ int	format_identifier(va_list args, const char format)
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *str, ...)
 {
 	int			full_printed_len;
+	int			security_check;
 	int			i;
 	va_list		args;
 
 	i = 0;
 	full_printed_len = 0;
-	va_start(args, format);
-	while (format[i])
+	va_start(args, str);
+	while (str[i])
 	{
-		if (format[i] == '%')
+		if (str[i] == '%')
 		{
-			if (!format[i + 1])
+			security_check = 0;
+			security_check += format_identifier(args, str[++i]);
+			if (security_check == -1)
 				return (-1);
-			full_printed_len += format_identifier(args, format[i + 1]);
-			i++;
+			full_printed_len += security_check;
 		}
 		else
-		{
-			write(1, &format[i], 1);
-			full_printed_len++;
-		}
+			full_printed_len += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);
