@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:42:45 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/07 12:59:15 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:28:56 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_ptr(unsigned long long n)
 	char	*hex_result;
 
 	if (n == 0)
-		return (write(1, "0", 1));
+		return (write(1, "0x0", 3));
 	size = ptr_digit_counter(n);
 	hex_result = malloc(size + 1);
 	if (!hex_result)

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/07 12:21:52 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:57:28 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,47 @@ int	format_identifier(va_list args, const char format)
 	return (0);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_print_n_check(const char *str, va_list args, int security_check)
 {
-	int			full_printed_len;
-	int			security_check;
-	int			i;
-	va_list		args;
+	int	full_printed_len;
+	int	i;
 
 	i = 0;
 	full_printed_len = 0;
-	va_start(args, str);
 	while (str[i])
 	{
+		security_check = 0;
 		if (str[i] == '%')
 		{
-			security_check = 0;
 			security_check += format_identifier(args, str[++i]);
 			if (security_check == -1)
 				return (-1);
 			full_printed_len += security_check;
 		}
 		else
-			full_printed_len += ft_putchar(str[i]);
+		{
+			security_check += ft_putchar(str[i]);
+			if (security_check == -1)
+				return (-1);
+			full_printed_len += security_check;
+		}
 		i++;
 	}
+	return (full_printed_len);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	int		full_printed_len;
+	int		security_check;
+
+	security_check = 0;
+	full_printed_len = 0;
+	va_start(args, str);
+	full_printed_len = ft_print_n_check(str, args, security_check);
+	if (security_check == -1)
+		return (-1);
 	va_end(args);
 	return (full_printed_len);
 }

@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:42:44 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/05 12:26:52 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:03:28 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdint.h>
 
 int	ft_printf(const char *format, ...);
 int	ft_putstr(char *str);
