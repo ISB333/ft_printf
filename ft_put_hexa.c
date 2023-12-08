@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 15:11:47 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/07 12:59:33 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:29:42 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	ft_put_hexa_lowerx(unsigned int n, char *hex_result)
 	while (i - 1 >= 0)
 	{
 		if (write(1, &hex_result[--i], 1) == -1)
-		{
-			free(hex_result);
-			return (-1);
-		}
+			return (free(hex_result), -1);
 	}
 	free(hex_result);
 	return (i_hexa);
@@ -59,10 +56,7 @@ int	ft_put_hexa_upperx(unsigned int n, char *hex_result)
 	while (i - 1 >= 0)
 	{
 		if (write(1, &hex_result[--i], 1) == -1)
-		{
-			free(hex_result);
-			return (-1);
-		}
+			return (free(hex_result), -1);
 	}
 	free(hex_result);
 	return (i_hexa);

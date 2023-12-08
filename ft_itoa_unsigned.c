@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:26:04 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/07 12:06:03 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:28:09 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_itoa_unsigned(unsigned int n)
 	while (result[i])
 	{
 		if (write(1, &result[i++], 1) == -1)
-			return (-1);
+			return (free(result), -1);
 	}
 	free(result);
 	return (i);

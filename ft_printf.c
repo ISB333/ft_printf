@@ -6,7 +6,7 @@
 /*   By: adesille <adesille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:45:43 by adesille          #+#    #+#             */
-/*   Updated: 2023/12/07 16:57:28 by adesille         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:25:10 by adesille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_printf(const char *str, ...)
 	full_printed_len = 0;
 	va_start(args, str);
 	full_printed_len = ft_print_n_check(str, args, security_check);
-	if (security_check == -1)
+	if (full_printed_len == -1)
 		return (-1);
 	va_end(args);
 	return (full_printed_len);
